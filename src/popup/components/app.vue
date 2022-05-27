@@ -65,7 +65,7 @@
               <ElButton @click="reset(key)" type="danger" plain>重置</ElButton>
             </el-col>
             <el-col :span="7">
-              <ElButton @click="send()" type="primary" plain>发送日报</ElButton>
+              <ElButton @click="send('0')" type="primary" plain>发送日报</ElButton>
             </el-col>
             <el-col :span="7">
               <ElButton type="success" plain @click="send('1')"
