@@ -1,0 +1,12 @@
+.el-message-box{
+    width: 300px;
+  }
+.el-overlay.is-message-box .el-overlay-message-box{
+    position: unset !important;
+  }
+.el-message {
+    top: 50% !important;
+}
+body::-webkit-scrollbar {
+    display: none;
+}

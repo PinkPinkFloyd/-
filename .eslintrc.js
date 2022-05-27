@@ -14,10 +14,13 @@ module.exports = {
     parser: 'babel-eslint'
   },
   rules: {
+    "quotes":"off",
+    "space-before-blocks":0,
+    "keyword-spacing":0,
     "generator-star-spacing": "off",
     "object-curly-spacing": "off",
     "no-var": "error",
-    "semi": 0,
+    "semi": 'off',
     "eol-last": "off",
     "no-tabs": "off",
     "indent": "off",
@@ -31,6 +34,7 @@ module.exports = {
     "no-else-return": "off",
     "no-unused-vars": [2, {"vars": "all", "args": "after-used"}],
     "no-console": "off",
+    'comma-dangle':'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
   }
 }

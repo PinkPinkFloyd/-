@@ -1,6 +1,8 @@
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const path = require("path");
-
+const AutoImport = require('unplugin-auto-import/webpack')
+const Components = require('unplugin-vue-components/webpack')
+const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 // 复制文件到指定目录
 const copyFiles = [
 	{
@@ -21,7 +23,13 @@ const copyFiles = [
 const plugins = [
   	new CopyWebpackPlugin({
     	patterns: copyFiles
-  	})
+  	}),
+	  AutoImport({
+		resolvers: [ElementPlusResolver()],
+	  }),
+	  Components({
+		resolvers: [ElementPlusResolver()],
+	  }),
 ];
 
 // 页面文件
@@ -42,6 +50,15 @@ module.exports = {
 	productionSourceMap: false,
 	// 配置 content.js background.js
 	configureWebpack: {
+		module: {
+            rules: [
+                {
+                    test: /.mjs$/,
+                    include: /node_modules/,
+                    type: "javascript/auto"
+                },
+            ]
+        },
 		entry: {
 			content: "./src/content/main.js",
 			background: "./src/background/main.js"
@@ -62,5 +79,19 @@ module.exports = {
 			config.output.filename('js/[name].js').end()
 			config.output.chunkFilename('js/[name].js').end()
 		}
-	}
+	},
+	devServer: {
+		disableHostCheck: true,
+		port: 8080,
+		proxy: {
+		  '/': {
+			target: '127.0.0.1:80',
+			ws: false, // 需要websocket 开启
+			pathRewrite: {
+			  '^/': '/'
+			}
+		  }
+		}
+	  }
+	
 }
