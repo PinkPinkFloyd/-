@@ -20,7 +20,7 @@
               <el-input v-model="item2.msg" @blur="save()" type="textarea">
               </el-input>
             </el-col>
-            <el-col :span="6" style="font-size: 32px;padding-left:4px">
+            <el-col :span="6" style="font-size: 32px; padding-left: 4px">
               <el-button
                 type="primary"
                 :icon="Plus"
@@ -68,7 +68,9 @@
               <ElButton @click="send()" type="primary" plain>发送日报</ElButton>
             </el-col>
             <el-col :span="7">
-              <ElButton type="success" plain>生成周报</ElButton>
+              <ElButton type="success" plain @click="send('1')"
+                >生成周报</ElButton
+              >
             </el-col>
           </el-row>
         </el-tab-pane>
@@ -99,6 +101,15 @@ export default {
     const { send } = useSend(save, initData, date, name);
     // 操作表单
     const { add, reset, del } = useOption(initData, save);
+
+    window.onkeydown = (e) => {
+      if (e.key === "Enter") {
+        add(activeName, initData[activeName].msgList.length);
+      }
+      if (e.key === "Backspace" && initData[activeName].msgList.length !== 1) {
+        del(activeName, initData[activeName].msgList.length - 1);
+      }
+    };
     onMounted(() => {
       //  读取缓存
       getStorage();

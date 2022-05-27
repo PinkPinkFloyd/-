@@ -8,7 +8,6 @@ export function useOption(initData, save) {
       ElMessageBox('卷王收手吧，别写了!!!')
       return
     }
-    console.log();
     initData[key].msgList.push({
       msg: "",
       index: length + 1
@@ -16,7 +15,7 @@ export function useOption(initData, save) {
   }
   const del = (key, index) => {
     console.log(key);
-
+    console.log(index);
     initData[key].msgList.splice(
       index, 1
     )
