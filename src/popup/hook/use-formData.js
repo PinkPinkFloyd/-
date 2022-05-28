@@ -30,7 +30,11 @@ export function useFormData(){
         Sat: {
         msgList: [{msg: "", index: 1}],
         name: '星期六'
-        }
+        },
+        Sun: {
+            msgList: [{msg: "休息", index: 1}],
+            name: '星期天'
+            }
       })
       const name = ref('')
     return{

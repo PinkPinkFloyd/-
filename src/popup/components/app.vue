@@ -90,6 +90,11 @@ import { useOption } from "../hook/use-option";
 import { ElInput, ElButton } from "element-plus";
 import { Plus, Close } from "@element-plus/icons-vue";
 import { onMounted } from "vue-demi";
+const time = new Date()
+const year = time.getFullYear()
+const mounth = time.getMonth() + 1
+const day = time.getDate()
+console.log(year, mounth, day);
 export default {
   components: { ElInput, ElButton, Plus, Close },
   setup() {
@@ -110,6 +115,7 @@ export default {
         del(activeName, initData[activeName].msgList.length - 1);
       }
     };
+      
     onMounted(() => {
       //  读取缓存
       getStorage();
